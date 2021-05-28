@@ -26,9 +26,7 @@ function App() {
   useEffect(() => {
      axios.get(`https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}`)
     .then(res => {
-      console.log(res.data);
       setRecipes(res.data.hits);
-      console.log("recipes", recipes)
     })
     .catch(err => {
       console.log(err);
@@ -54,9 +52,9 @@ function App() {
           Search
           </button>
       </form>
-  <div>
+  <div className="recipes">
       {recipes.map((recipe, index) => {
-        return <Recipe title={recipe.recipe.label} calories={recipe.recipe.calories} image={recipe.recipe.image} key={index}/>
+        return <Recipe title={recipe.recipe.label} calories={recipe.recipe.calories} image={recipe.recipe.image} ingredients={recipe.recipe.ingredients} key={index}/>
       })}
   </div>
     </div>
